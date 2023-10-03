@@ -1,35 +1,49 @@
-class World{
-    character = new Character();
-    enemies = [
-        new Chicken(),
-        new Chicken(),
-        new Chicken(),
-    ];
-    clouds = [
-        new Cloud(),
-    ];
-    ctx;
-    canvas;
+class World {
+  character = new Character();
+  enemies = [new Chicken(), new Chicken(), new Chicken()];
+  clouds = [new Cloud()];
+  backgroundObjects = [
+    new BackgroundObject('img/5_background/layers/air.png', 0, 0),
+    new BackgroundObject('img/5_background/layers/3_third_layer/1.png', 0, 0),
+    new BackgroundObject('img/5_background/layers/2_second_layer/1.png', 0, 0),
+    new BackgroundObject("img/5_background/layers/1_first_layer/1.png", 0, 0),
+    
+  ];
+  ctx;
+  canvas;
 
-    constructor(canvas){
-        this.ctx = canvas.getContext('2d');
-        this.canvas = canvas;
-        this.draw();
-    }
+  constructor(canvas) {
+    this.ctx = canvas.getContext("2d");
+    this.canvas = canvas;
+    this.draw();
+  }
 
-    draw(){
-        this.ctx.clearRect(0 ,0 , this.canvas.width, this.canvas.height);
-        this.ctx.drawImage(this.character.img, this.character.x, this.character.y, this.character.width, this.character.height);
-        this.enemies.forEach(chicken => {
-            this.ctx.drawImage(chicken.img, chicken.x, chicken.y, chicken.width, chicken.height)            
-        });
-        this.clouds.forEach(cloud => {
-            this.ctx.drawImage(cloud.img, cloud.x, cloud.y, cloud.width, cloud.height);
-        })
-        
-        self = this;
-        requestAnimationFrame(function(){
-            self.draw();
-        });
-    }
+  draw() {
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    this.addObjectsToMap(this.backgroundObjects);
+    this.addObjectsToMap(this.clouds);
+    this.addToMap(this.character);
+    this.addObjectsToMap(this.enemies);
+
+    self = this;
+    requestAnimationFrame(function () {
+      self.draw();
+    });
+  }
+
+  addObjectsToMap(objects) {
+    objects.forEach((object) => {
+      this.addToMap(object);
+    });
+  }
+
+  addToMap(movableObject) {
+    this.ctx.drawImage(
+      movableObject.img,
+      movableObject.x,
+      movableObject.y,
+      movableObject.width,
+      movableObject.height
+    );
+  }
 }
