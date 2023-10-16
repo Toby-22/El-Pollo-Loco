@@ -22,5 +22,14 @@ const level1 = new Level(
         new BackgroundObject("img/5_background/layers/3_third_layer/2.png", 719*3, 0),
         new BackgroundObject("img/5_background/layers/2_second_layer/2.png", 719*3, 0),
         new BackgroundObject("img/5_background/layers/1_first_layer/2.png", 719*3, 0),
+      ],
+      [
+        new CollectableObject("img/8_coin/coin_1.png", 500, 300),
+        new CollectableObject("img/8_coin/coin_1.png", 600, 450),
+        new CollectableObject("img/8_coin/coin_1.png", 200, 100),
+        new CollectableObject("img/8_coin/coin_1.png", 700, 300),
+        new CollectableObject("img/8_coin/coin_1.png", 800, 350),
+        new CollectableObject("img/8_coin/coin_1.png", 900, 300),
+        new CollectableObject("img/8_coin/coin_1.png", 1000, 300),
       ]
 );
