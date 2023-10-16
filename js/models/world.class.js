@@ -21,25 +21,47 @@ class World {
     this.character.world = this;
   }
 
-  run(){
+  run() {
     setInterval(() => {
       this.checkCollisions();
       this.checkThrowObjects();
     }, 100);
   }
 
-  checkThrowObjects(){
-    if(this.keyboard.SPACE){
-      let bottle = new ThrowableObject(this.character.x + 70, this.character.y + 100)
+  checkThrowObjects() {
+    if (this.keyboard.SPACE) {
+      let bottle = new ThrowableObject(
+        this.character.x + 70,
+        this.character.y + 100
+      );
       this.bottles.push(bottle);
     }
   }
-  checkCollisions(){
+
+  checkCollisions() {
     this.level.enemies.forEach((enemy) => {
-      if(this.character.isColliding(enemy)){
+      if (this.character.isColliding(enemy)) {
         this.character.hit();
         this.statusbar.setPercentage(this.character.energy);
-      };
+      }
+    });
+
+    let collectCoinsCounter = 0;
+    this.level.collectableCoins.forEach((coin) => {
+      collectCoinsCounter += 1;
+      if (this.character.isColliding(coin)) {
+        this.character.coins += 1;
+        this.level.collectableCoins.splice(collectCoinsCounter - 1, 1);
+      }
+    });
+
+    let collectBottelsCounter = 0;
+    this.level.collectableBottles.forEach((bottle) =>{
+      collectBottelsCounter += 1;
+      if (this.character.isColliding(bottle)){
+        this.character.bottles += 1;
+        this.level.collectableBottles.splice(collectBottelsCounter -1, 1);
+      }
     })
   }
 
@@ -48,7 +70,8 @@ class World {
     this.ctx.translate(this.camera_x, 0);
     this.addObjectsToMap(this.level.backgroundObjects);
     this.addObjectsToMap(this.level.clouds);
-    this.addObjectsToMap(this.level.collectabelObjects);
+    this.addObjectsToMap(this.level.collectableCoins);
+    this.addObjectsToMap(this.level.collectableBottles);
 
     this.ctx.translate(-this.camera_x, 0);
     // ----- Space for fixed objects -------
@@ -82,14 +105,14 @@ class World {
     }
   }
 
-  flipImage(mo){
+  flipImage(mo) {
     this.ctx.save();
-      this.ctx.translate(mo.width, 0);
-      this.ctx.scale(-1, 1);
-      mo.x = mo.x * -1;
+    this.ctx.translate(mo.width, 0);
+    this.ctx.scale(-1, 1);
+    mo.x = mo.x * -1;
   }
 
-  flipImageBack(mo){
+  flipImageBack(mo) {
     mo.x = mo.x * -1;
     this.ctx.restore();
   }
