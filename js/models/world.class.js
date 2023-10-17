@@ -29,12 +29,13 @@ class World {
   }
 
   checkThrowObjects() {
-    if (this.keyboard.SPACE) {
+    if (this.keyboard.SPACE && this.character.bottles > 0) {
       let bottle = new ThrowableObject(
         this.character.x + 70,
         this.character.y + 100
       );
       this.bottles.push(bottle);
+      this.character.bottles -= 1;
     }
   }
 
@@ -59,7 +60,7 @@ class World {
     this.level.collectableBottles.forEach((bottle) =>{
       collectBottelsCounter += 1;
       if (this.character.isColliding(bottle)){
-        this.character.bottles += 1;
+        this.character.collectBottel();
         this.level.collectableBottles.splice(collectBottelsCounter -1, 1);
       }
     })

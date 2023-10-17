@@ -86,4 +86,11 @@ class Character extends MovableObject {
     }, 50);
   }
 
+  collectBottel(){
+    if(this.bottles < 3){
+    this.bottles += 1;
+    } else{
+      console.log('Sie haben die maximale Anzahl an Flschen erreicht.')
+    }
+  }
 }
