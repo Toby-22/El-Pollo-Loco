@@ -24,9 +24,9 @@ const level1 = new Level(
         new BackgroundObject("img/5_background/layers/1_first_layer/2.png", 719*3, 0),
       ],
       [
-        new CollectableObject("img/8_coin/coin_1.png", 500, 300),
-        new CollectableObject("img/8_coin/coin_1.png", 600, 450),
-        new CollectableObject("img/8_coin/coin_1.png", 200, 100),
+        new CollectableObject("img/8_coin/coin_1.png", 400, 300),
+        new CollectableObject("img/8_coin/coin_1.png", 500, 350),
+        new CollectableObject("img/8_coin/coin_1.png", 600, 100),
         new CollectableObject("img/8_coin/coin_1.png", 700, 300),
         new CollectableObject("img/8_coin/coin_1.png", 800, 350),
         new CollectableObject("img/8_coin/coin_1.png", 900, 300),
@@ -34,12 +34,16 @@ const level1 = new Level(
       ],
       [
         new CollectableObject("img/6_salsa_bottle/salsa_bottle.png", 600, 300),
-        new CollectableObject("img/6_salsa_bottle/salsa_bottle.png", 700, 450),
+        new CollectableObject("img/6_salsa_bottle/salsa_bottle.png", 700, 350),
         new CollectableObject("img/6_salsa_bottle/salsa_bottle.png", 300, 100),
         new CollectableObject("img/6_salsa_bottle/salsa_bottle.png", 800, 300),
         new CollectableObject("img/6_salsa_bottle/salsa_bottle.png", 900, 350),
         new CollectableObject("img/6_salsa_bottle/salsa_bottle.png", 1200, 300),
-        new CollectableObject("img/6_salsa_bottle/salsa_bottle.png", 1400, 300),
+        new CollectableObject("img/6_salsa_bottle/salsa_bottle.png", 1300, 300),
+        new CollectableObject("img/6_salsa_bottle/salsa_bottle.png", 1420, 300),
+        new CollectableObject("img/6_salsa_bottle/salsa_bottle.png", 1500, 300),
+        new CollectableObject("img/6_salsa_bottle/salsa_bottle.png", 1550, 300),
+        new CollectableObject("img/6_salsa_bottle/salsa_bottle.png", 1600, 300),
       ]
 
 );

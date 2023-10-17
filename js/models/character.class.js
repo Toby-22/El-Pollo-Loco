@@ -39,6 +39,7 @@ class Character extends MovableObject {
   world;
   walking_sound = new Audio("sounds/walking.mp3");
   coins = 0;
+  maxPortableBottles = 8;
   bottles = 0;
 
   constructor() {
@@ -87,7 +88,7 @@ class Character extends MovableObject {
   }
 
   collectBottel(){
-    if(this.bottles < 3){
+    if(this.bottles < this.maxPortableBottles){
     this.bottles += 1;
     } else{
       console.log('Sie haben die maximale Anzahl an Flschen erreicht.')

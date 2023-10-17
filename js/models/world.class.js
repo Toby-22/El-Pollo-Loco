@@ -1,6 +1,8 @@
 class World {
   character = new Character();
   statusbar = new StatusBar();
+  coinStatusBar = new CoinStatus();
+  bottleStatusBar = new BottleStatus(this.character);
   level = level1;
   ctx;
   canvas;
@@ -36,6 +38,7 @@ class World {
       );
       this.bottles.push(bottle);
       this.character.bottles -= 1;
+      this.bottleStatusBar.setBottleStatus(this.character.bottles);
     }
   }
 
@@ -53,6 +56,7 @@ class World {
       if (this.character.isColliding(coin)) {
         this.character.coins += 1;
         this.level.collectableCoins.splice(collectCoinsCounter - 1, 1);
+        this.coinStatusBar.setCoinStatus(this.character.coins);
       }
     });
 
@@ -62,6 +66,7 @@ class World {
       if (this.character.isColliding(bottle)){
         this.character.collectBottel();
         this.level.collectableBottles.splice(collectBottelsCounter -1, 1);
+        this.bottleStatusBar.setBottleStatus(this.character.bottles);
       }
     })
   }
@@ -77,6 +82,8 @@ class World {
     this.ctx.translate(-this.camera_x, 0);
     // ----- Space for fixed objects -------
     this.addObjectsToMap([this.statusbar]);
+    this.addObjectsToMap([this.coinStatusBar]);
+    this.addObjectsToMap([this.bottleStatusBar]);
     this.addObjectsToMap(this.bottles);
     this.ctx.translate(this.camera_x, 0);
     this.addToMap(this.character);
