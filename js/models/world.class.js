@@ -32,10 +32,7 @@ class World {
 
   checkThrowObjects() {
     if (this.keyboard.SPACE && this.character.bottles > 0) {
-      let bottle = new ThrowableObject(
-        this.character.x + 70,
-        this.character.y + 100
-      );
+      let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 50);
       this.bottles.push(bottle);
       this.character.bottles -= 1;
       this.bottleStatusBar.setBottleStatus(this.character.bottles);
@@ -78,13 +75,14 @@ class World {
     this.addObjectsToMap(this.level.clouds);
     this.addObjectsToMap(this.level.collectableCoins);
     this.addObjectsToMap(this.level.collectableBottles);
+    this.addObjectsToMap(this.bottles);
 
     this.ctx.translate(-this.camera_x, 0);
     // ----- Space for fixed objects -------
     this.addObjectsToMap([this.statusbar]);
     this.addObjectsToMap([this.coinStatusBar]);
     this.addObjectsToMap([this.bottleStatusBar]);
-    this.addObjectsToMap(this.bottles);
+    
     this.ctx.translate(this.camera_x, 0);
     this.addToMap(this.character);
     this.addObjectsToMap(this.level.enemies);
