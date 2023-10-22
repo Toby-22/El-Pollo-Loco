@@ -30,7 +30,6 @@ class World {
       this.checkCollectBottle();
       this.checkCollectCoins();
       this.checkHitEnemyWithBottle();
-      this.checkLiveOfAllEnemies();
     }, 100);
   }
 
@@ -78,7 +77,7 @@ class World {
       }
     });
   }
-  
+
   /**
    * Checks if any Enemy hit by a throwing bottle and reduce enemies Energy with 10
    */
@@ -86,13 +85,9 @@ class World {
     this.level.enemies.forEach((enemy) => {
       this.bottles.forEach((bottle) => {
         if (bottle.isColliding(enemy)) {
-          enemy.energy -= 20;
-          console.log("The Enemy" + enemy + "is Dead!");
-          if(this.energy < 0){
-            this.energy = 0;
-          } else{
-            this.lastHit = new Date().getTime();
-        }}
+          enemy.hit();
+          console.log("The Enemy" + enemy + "is Hit by a Bottle!");
+        }
       });
     });
   }
@@ -100,7 +95,7 @@ class World {
   /**
    * Checks if any Enemy has enough energy, when not delete it from Canvas
    */
-  checkLiveOfAllEnemies(){
+  checkLiveOfAllEnemies() {
     for (let i = this.level.enemies.length - 1; i >= 0; i--) {
       const enemy = this.level.enemies[i];
       if (enemy.energy <= 0) {

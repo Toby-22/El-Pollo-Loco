@@ -68,4 +68,3 @@ class MovableObject extends DrawableObject{
     return timepassed < 1000;
   }
 }
-
