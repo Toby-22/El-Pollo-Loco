@@ -27,12 +27,19 @@ class World {
     setInterval(() => {
       this.checkCollisions();
       this.checkThrowObjects();
+      this.checkCollectBottle();
+      this.checkCollectCoins();
+      this.checkHitEnemyWithBottle();
+      this.checkLiveOfAllEnemies();
     }, 100);
   }
 
   checkThrowObjects() {
     if (this.keyboard.SPACE && this.character.bottles > 0) {
-      let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 50);
+      let bottle = new ThrowableObject(
+        this.character.x + 100,
+        this.character.y + 50
+      );
       this.bottles.push(bottle);
       this.character.bottles -= 1;
       this.bottleStatusBar.setBottleStatus(this.character.bottles);
@@ -46,7 +53,9 @@ class World {
         this.statusbar.setPercentage(this.character.energy);
       }
     });
+  }
 
+  checkCollectCoins() {
     let collectCoinsCounter = 0;
     this.level.collectableCoins.forEach((coin) => {
       collectCoinsCounter += 1;
@@ -56,16 +65,48 @@ class World {
         this.coinStatusBar.setCoinStatus(this.character.coins);
       }
     });
+  }
 
+  checkCollectBottle() {
     let collectBottelsCounter = 0;
-    this.level.collectableBottles.forEach((bottle) =>{
+    this.level.collectableBottles.forEach((bottle) => {
       collectBottelsCounter += 1;
-      if (this.character.isColliding(bottle)){
+      if (this.character.isColliding(bottle)) {
         this.character.collectBottel();
-        this.level.collectableBottles.splice(collectBottelsCounter -1, 1);
+        this.level.collectableBottles.splice(collectBottelsCounter - 1, 1);
         this.bottleStatusBar.setBottleStatus(this.character.bottles);
       }
-    })
+    });
+  }
+  
+  /**
+   * Checks if any Enemy hit by a throwing bottle and reduce enemies Energy with 10
+   */
+  checkHitEnemyWithBottle() {
+    this.level.enemies.forEach((enemy) => {
+      this.bottles.forEach((bottle) => {
+        if (bottle.isColliding(enemy)) {
+          enemy.energy -= 20;
+          console.log("The Enemy" + enemy + "is Dead!");
+          if(this.energy < 0){
+            this.energy = 0;
+          } else{
+            this.lastHit = new Date().getTime();
+        }}
+      });
+    });
+  }
+
+  /**
+   * Checks if any Enemy has enough energy, when not delete it from Canvas
+   */
+  checkLiveOfAllEnemies(){
+    for (let i = this.level.enemies.length - 1; i >= 0; i--) {
+      const enemy = this.level.enemies[i];
+      if (enemy.energy <= 0) {
+        this.level.enemies.splice(i, 1);
+      }
+    }
   }
 
   draw() {
@@ -82,7 +123,7 @@ class World {
     this.addObjectsToMap([this.statusbar]);
     this.addObjectsToMap([this.coinStatusBar]);
     this.addObjectsToMap([this.bottleStatusBar]);
-    
+
     this.ctx.translate(this.camera_x, 0);
     this.addToMap(this.character);
     this.addObjectsToMap(this.level.enemies);

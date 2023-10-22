@@ -57,5 +57,27 @@ function enterFullscreen(element) {
   }
 };
 
+function playGame(){
+  console.log('Game is started');
+  showGameScreen();
+}
 
+/**
+ * Hides the start screen
+ */
+function showGameScreen(){
+  let startScreen = document.getElementById('startscreen');
+  let gameScreen = document.getElementById('fullscreen');
+  startScreen.classList.add('dnone');
+  gameScreen.classList.remove('dnone');
+}
 
+/**
+ * Hides the game screen
+ */
+function showStartScreen(){
+  let startScreen = document.getElementById('startscreen');
+  let gameScreen = document.getElementById('fullscreen');
+  startScreen.classList.remove('dnone');
+  gameScreen.classList.add('dnone');
+}

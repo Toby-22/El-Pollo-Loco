@@ -12,10 +12,24 @@ body {
     background-repeat: no-repeat;
     font-family: "Coffee";
     font-size: 24px;
+    margin: 0;
+}
+.startscreen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
 }
 
 canvas {
     background-color: black;
+    display: block;
 }
 
 #fullscreen {
@@ -32,4 +46,31 @@ canvas {
 #btn-box img {
     width: 20px;
     padding: 10px;
+}
+
+.dnone {
+    display: none;
+}
+
+.startImg{ 
+    width: 80%;
+}
+
+.playImg{
+    position: absolute;
+    z-index: 5;
+    cursor: pointer;
+    top: 200px;
+}
+
+@media only screen and (max-width: 720px){
+    canvas {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-height: 480px){
+    canvas {
+        height: 100vh;
+    }
 }
