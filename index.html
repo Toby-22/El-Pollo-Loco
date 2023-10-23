@@ -24,17 +24,18 @@
     <script src="js/game.js"></script>
   </head>
   <body onload="init()">
+    <h1>El Pollo Loco</h1>
     <div id="startscreen" class="startscreen">
       <img class="startImg" src="img/9_intro_outro_screens/start/startscreen_1.png" alt="" />
       <img class="playImg" src="img/play_icon.svg" alt="" onclick="playGame()">
     </div>
 
     <div id="fullscreen" class="dnone">
-      <h1>El Pollo Loco</h1>
       <div id="btn-box">
         <img src="img/home.svg" alt="Homebutton" onclick="showStartScreen()"/>
         <img src="img/expand-solid.svg" alt="Fullscreenbutton" onclick="enterFullscreen(canvas)"/>
       </div>
+      <div id="game-over"></div>
       <canvas width="720" height="480" id="canvas"></canvas>
     </div>
   </body>

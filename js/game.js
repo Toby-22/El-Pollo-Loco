@@ -81,3 +81,14 @@ function showStartScreen(){
   startScreen.classList.remove('dnone');
   gameScreen.classList.add('dnone');
 }
+
+function gameOver(){
+  let gameOverDiv = document.getElementById('game-over');
+  gameOverDiv.innerHTML = /*html*/ `<img class="game-over" src='img/9_intro_outro_screens/game_over/you lost.png'>
+  <div class="retry-btn" onclick="restartGame()"><img class="retryIcon" src="img/revolver.svg"/>Retry</div>`;
+}
+
+function restartGame(){
+  console.log("Retry Button is pressed");
+  location.reload();
+}
