@@ -1,6 +1,7 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
+let intervalIds = [];
 
 function init() {
   canvas = document.getElementById("canvas");
@@ -92,3 +93,24 @@ function restartGame(){
   console.log("Retry Button is pressed");
   location.reload();
 }
+
+
+/**
+ * creat a new Interval, which push it's id in the array intervalIds
+ * @param {function} fn 
+ * @param {integer} time 
+ */
+function setSoppableInterval(fn, time){
+  let intervalId = setInterval(fn, time);
+  intervalIds.push(intervalId);
+}
+
+/**
+ * Stop all intervals who listet in the interalIds array
+ */
+function stopGame(){
+  intervalIds.forEach(id => {
+    clearInterval(id);    
+  });
+}
+
