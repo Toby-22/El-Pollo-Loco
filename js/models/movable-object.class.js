@@ -67,4 +67,16 @@ class MovableObject extends DrawableObject{
     let timepassed = new Date().getTime() - this.lastHit;
     return timepassed < 1000;
   }
+
+  /**
+ * creat a new Interval, which push it's id in the array intervalIds
+ * @param {function} fn 
+ * @param {integer} time 
+ */
+setSoppableInterval(fn, time){
+  let intervalId = setInterval(fn, time);
+  intervalIds.push(intervalId);
+}
+
+
 }

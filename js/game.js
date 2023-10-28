@@ -1,7 +1,6 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
-let intervalIds = [];
 
 function init() {
   canvas = document.getElementById("canvas");
@@ -86,6 +85,7 @@ function showStartScreen(){
 }
 
 function gameOver(){
+  world.stopAllIntervals();
   let gameOverDiv = document.getElementById('game-over');
   gameOverDiv.innerHTML = /*html*/ `<img class="game-over" src='img/9_intro_outro_screens/game_over/you lost.png'>
   <div class="retry-btn" onclick="restartGame()"><img class="retryIcon" src="img/revolver.svg"/>Retry</div>`;
@@ -94,25 +94,5 @@ function gameOver(){
 function restartGame(){
   console.log("Retry Button is pressed");
   location.reload();
-}
-
-
-/**
- * creat a new Interval, which push it's id in the array intervalIds
- * @param {function} fn 
- * @param {integer} time 
- */
-function setSoppableInterval(fn, time){
-  let intervalId = setInterval(fn, time);
-  intervalIds.push(intervalId);
-}
-
-/**
- * Stop all intervals who listet in the interalIds array
- */
-function stopGame(){
-  intervalIds.forEach(id => {
-    clearInterval(id);    
-  });
 }
 

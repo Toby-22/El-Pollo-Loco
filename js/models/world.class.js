@@ -158,4 +158,11 @@ class World {
     mo.x = mo.x * -1;
     this.ctx.restore();
   }
+
+  stopAllIntervals(){
+    for (let index = 0; index < 1000; index++) {
+      window.clearInterval(index);
+      
+    }
+  }
 }
