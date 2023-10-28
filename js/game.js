@@ -60,6 +60,8 @@ function enterFullscreen(element) {
 
 function playGame(){
   console.log('Game is started');
+  initLevel1();
+  init();
   showGameScreen();
 }
 

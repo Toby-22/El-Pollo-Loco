@@ -1,4 +1,7 @@
-const level1 = new Level(
+let level1;
+
+function initLevel1(){
+level1 = new Level(
     [new Chicken(), new Chicken(), new Chicken(), new Endboss()],
     [new Cloud()],
     [
@@ -22,8 +25,8 @@ const level1 = new Level(
         new BackgroundObject("img/5_background/layers/3_third_layer/2.png", 719*3, 0),
         new BackgroundObject("img/5_background/layers/2_second_layer/2.png", 719*3, 0),
         new BackgroundObject("img/5_background/layers/1_first_layer/2.png", 719*3, 0),
-      ],
-      [
+    ],
+    [
         new CollectableObject("img/8_coin/coin_1.png", 400, 300),
         new CollectableObject("img/8_coin/coin_1.png", 500, 350),
         new CollectableObject("img/8_coin/coin_1.png", 600, 100),
@@ -31,8 +34,8 @@ const level1 = new Level(
         new CollectableObject("img/8_coin/coin_1.png", 800, 350),
         new CollectableObject("img/8_coin/coin_1.png", 900, 300),
         new CollectableObject("img/8_coin/coin_1.png", 1000, 300),
-      ],
-      [
+    ],
+    [
         new CollectableObject("img/6_salsa_bottle/salsa_bottle.png", 600, 300),
         new CollectableObject("img/6_salsa_bottle/salsa_bottle.png", 700, 350),
         new CollectableObject("img/6_salsa_bottle/salsa_bottle.png", 300, 100),
@@ -44,6 +47,6 @@ const level1 = new Level(
         new CollectableObject("img/6_salsa_bottle/salsa_bottle.png", 1500, 300),
         new CollectableObject("img/6_salsa_bottle/salsa_bottle.png", 1550, 300),
         new CollectableObject("img/6_salsa_bottle/salsa_bottle.png", 1600, 300),
-      ]
-
+    ]
 );
+}
