@@ -88,7 +88,14 @@ function gameOver(){
   world.stopAllIntervals();
   let gameOverDiv = document.getElementById('game-over');
   gameOverDiv.innerHTML = /*html*/ `<img class="game-over" src='img/9_intro_outro_screens/game_over/you lost.png'>
-  <div class="retry-btn" onclick="restartGame()"><img class="retryIcon" src="img/revolver.svg"/>Retry</div>`;
+  <div class="retry-btn btn" onclick="restartGame()"><img class="retryIcon" src="img/revolver.svg"/>Retry</div>`;
+}
+
+function gameWon(){
+  world.stopAllIntervals();
+  let gameWonDiv = document.getElementById('game-won');
+  gameWonDiv.innerHTML = /*html*/ `<div class="blur-background"><h2 class="game-won">You won the game!</h2>
+  <div class="retry-btn btn" onclick="restartGame()"><img class="retryIcon" src="img/revolver.svg"/>Retry</div></div>`;
 }
 
 function restartGame(){
@@ -96,3 +103,17 @@ function restartGame(){
   location.reload();
 }
 
+function showKeyLegend(){
+  let startScreenDiv = document.getElementById('startscreen');
+  startScreenDiv.innerHTML += /*html*/ `<div id="keyboard"><div class="blur-background"><img class="closeButton" src="img/close2.svg" onclick="hideKeyLegend()"/><h2 class="game-won">Tastaturlayout</h2></div>`
+
+}
+
+function hideKeyLegend(){
+  let startScreenDiv = document.getElementById('startscreen');
+  startScreenDiv.innerHTML = /*html*/ `<img class="startImg" src="img/9_intro_outro_screens/start/startscreen_1.png" alt="" />
+  <div class="startNavigation">
+    <div class="btn" onclick="playGame()"><img class="retryIcon" src="img/revolver.svg"/>Play</div>
+    <img class ="startNavigationIcon" src="img/keyboard.svg" alt="keyboard" onclick="showKeyLegend()"/>
+  </div>`
+}

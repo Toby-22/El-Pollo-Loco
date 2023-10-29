@@ -2,6 +2,14 @@
     font-family: "Coffee";
     src: url(fonts/CoffeetinInitials-YXJ2.ttf) format('truetype');
 }
+@font-face {
+    font-family: "Cactus";
+    src: url(fonts/CactusSandwich.ttf) format('truetype');
+}
+@font-face {
+    font-family: "Boots";
+    src: url(fonts/Boots&Spurs_personal_use_only.ttf) format('truetype');
+}
 
 body {
     display: flex;
@@ -10,8 +18,9 @@ body {
     background-image: url('img/dessert.png');
     background-position: center;
     background-repeat: no-repeat;
-    font-family: "Coffee";
+    font-family: "Boots";
     font-size: 24px;
+    font-weight: 100;
     margin: 0;
 }
 .startscreen {
@@ -24,6 +33,11 @@ body {
 h1 {
     display: flex;
     justify-content: center;
+    font-weight: 100;
+}
+
+h2{
+    font-weight: 100;
 }
 
 canvas {
@@ -47,7 +61,27 @@ canvas {
     padding: 10px;
 }
 
+.startNavigation{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    top: 10px;
+}
+
+.startNavigationIcon{
+    width: 50px;
+    padding-left: 10px;
+    cursor: pointer;
+    z-index: 2;
+}
+
 .dnone {
+    display: none;
+}
+
+.d-none{
     display: none;
 }
 
@@ -57,10 +91,8 @@ canvas {
 }
 
 .playImg{
-    position: absolute;
     z-index: 5;
     cursor: pointer;
-    top: 200px;
 }
 
 .game-over{
@@ -70,10 +102,34 @@ canvas {
     position: absolute;
 }
 
+.game-won{
+    z-index: 1;
+    width: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    font-size: 52px;
+    color: #ffdd2c;
+    padding-top: 100px;
+}
+
+#keyboard{
+    z-index: 3;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    font-size: 52px;
+    color: #ffdd2c;
+}
 .retry-btn{
     position: absolute;
     bottom: 30px;
     left: calc(100vw / 2 - 120px);
+}
+
+.btn{
     z-index: 2;
     cursor: pointer;
     background-color: #FFCB00;
@@ -84,14 +140,29 @@ canvas {
     width: 120px;
     height: 30px;
     border: 1.5px solid #ff8400;
+    padding: 5px;
 }
-.retry-btn:hover{
+.btn:hover{
     background-color: #ffdd2c;
     box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
 }
 
 .retryIcon{
     width: 20px;
+}
+
+.closeButton{
+    width: 20px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.blur-background{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(3px);
 }
 
 @media only screen and (max-width: 720px){

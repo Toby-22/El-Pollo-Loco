@@ -27,7 +27,11 @@
     <h1>El Pollo Loco</h1>
     <div id="startscreen" class="startscreen">
       <img class="startImg" src="img/9_intro_outro_screens/start/startscreen_1.png" alt="" />
-      <img class="playImg" src="img/play_icon.svg" alt="" onclick="playGame()">
+      <div class="startNavigation">
+        <!-- <img class="playImg" src="img/play_icon.svg" alt="" onclick="playGame()"> -->
+        <div class="btn" onclick="playGame()"><img class="retryIcon" src="img/revolver.svg"/>Play</div>
+        <img class ="startNavigationIcon" src="img/keyboard.svg" alt="keyboard" onclick="showKeyLegend()"/>
+      </div>
     </div>
 
     <div id="fullscreen" class="dnone">
@@ -36,6 +40,7 @@
         <img src="img/expand-solid.svg" alt="Fullscreenbutton" onclick="enterFullscreen(canvas)"/>
       </div>
       <div id="game-over"></div>
+      <div id="game-won"></div>
       <canvas width="720" height="480" id="canvas"></canvas>
     </div>
   </body>

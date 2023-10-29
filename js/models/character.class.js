@@ -77,7 +77,6 @@ class Character extends MovableObject {
       } else if(this.isDead()){
         this.playAnimation(this.IMAGES_DEAD);
         setTimeout(gameOver, 1000);
-        //gameOver();
       } else if(this.isAboveGround()) {
         this.playAnimation(this.IMAGES_JUMPING);
       } else {

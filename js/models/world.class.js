@@ -26,6 +26,7 @@ class World {
   run() {
     setInterval(() => {
       this.checkCollisions();
+      this.checkJumpOnEnemy();
       this.checkThrowObjects();
       this.checkCollectBottle();
       this.checkCollectCoins();
@@ -47,7 +48,7 @@ class World {
 
   checkCollisions() {
     this.level.enemies.forEach((enemy) => {
-      if (this.character.isColliding(enemy)) {
+      if (this.character.isColliding(enemy) && !this.character.isCollidingFromTop(enemy)) {
         this.character.hit();
         this.statusbar.setPercentage(this.character.energy);
       }
@@ -90,6 +91,16 @@ class World {
         }
       });
     });
+  }
+
+  checkJumpOnEnemy(){
+    this.level.enemies.forEach((enemy) => {
+      if(this.character.isCollidingFromTop(enemy)){
+        enemy.hit();
+        this.character.jump();
+        console.log("Pepe jumped on the enemy!")
+      }
+    })
   }
 
   /**
