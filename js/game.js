@@ -105,8 +105,8 @@ function restartGame(){
 
 function showKeyLegend(){
   let startScreenDiv = document.getElementById('startscreen');
-  startScreenDiv.innerHTML += /*html*/ `<div id="keyboard"><div class="blur-background"><img class="closeButton" src="img/close2.svg" onclick="hideKeyLegend()"/><h2 class="game-won">Tastaturlayout</h2></div>`
-
+  startScreenDiv.innerHTML += /*html*/ `<div id="keyboard"><div class="blur-background"><img class="closeButton" src="img/close2.svg" onclick="hideKeyLegend()"/>
+  <img class="key-legend" src="img/tastatur-removebg.png"/>`
 }
 
 function hideKeyLegend(){
