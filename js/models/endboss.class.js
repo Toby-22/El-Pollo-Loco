@@ -2,7 +2,14 @@ class Endboss extends MovableObject {
   height = 400;
   width = 250;
   y = 50;
+  speed = 2;
   IMAGES_WALKING = [
+    "img/4_enemie_boss_chicken/1_walk/G1.png",
+    "img/4_enemie_boss_chicken/1_walk/G2.png",
+    "img/4_enemie_boss_chicken/1_walk/G3.png",
+    "img/4_enemie_boss_chicken/1_walk/G4.png",
+  ];
+  IMAGES_ALERT = [
     "img/4_enemie_boss_chicken/2_alert/G5.png",
     "img/4_enemie_boss_chicken/2_alert/G6.png",
     "img/4_enemie_boss_chicken/2_alert/G7.png",
@@ -11,7 +18,17 @@ class Endboss extends MovableObject {
     "img/4_enemie_boss_chicken/2_alert/G10.png",
     "img/4_enemie_boss_chicken/2_alert/G11.png",
     "img/4_enemie_boss_chicken/2_alert/G12.png",
-  ];
+  ]
+  IMAGES_ATTACK = [
+    "img/4_enemie_boss_chicken/3_attack/G13.png",
+    "img/4_enemie_boss_chicken/3_attack/G14.png",
+    "img/4_enemie_boss_chicken/3_attack/G15.png",
+    "img/4_enemie_boss_chicken/3_attack/G16.png",
+    "img/4_enemie_boss_chicken/3_attack/G17.png",
+    "img/4_enemie_boss_chicken/3_attack/G18.png",
+    "img/4_enemie_boss_chicken/3_attack/G19.png",
+    "img/4_enemie_boss_chicken/3_attack/G20.png",
+  ]
   IMAGES_HURT = [
     "img/4_enemie_boss_chicken/4_hurt/G21.png",
     "img/4_enemie_boss_chicken/4_hurt/G22.png",
@@ -32,11 +49,13 @@ class Endboss extends MovableObject {
     this.loadImages(this.IMAGES_WALKING);
     this.loadImages(this.IMAGES_HURT);
     this.loadImages(this.IMAGES_DEAD);
+    this.loadImages(this.IMAGES_ATTACK);
     this.x = 2500;
     this.animate();
   }
 
   animate() {
+    let i = 0;
     setInterval(() => {
       if (this.isHurt()) {
         this.playAnimation(this.IMAGES_HURT);
@@ -45,10 +64,18 @@ class Endboss extends MovableObject {
         this.playAnimation(this.IMAGES_DEAD);
         this.kill_sound.play();
         setTimeout(gameWon, 1200);
-      } else {
+      } else if(world.character.x >= 2100){
+        console.log(i);
+        if (i < 120){
+          this.playAnimation(this.IMAGES_ATTACK);
+          this.bog_sound.play();
+        }else{
         this.playAnimation(this.IMAGES_WALKING);
         this.bog_sound.play();
+        this.moveLeft();
+        }
       }
+      i++;
     }, 50);
   }
 }

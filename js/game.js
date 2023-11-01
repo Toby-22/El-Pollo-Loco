@@ -2,11 +2,15 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 let gameOver_sound = new Audio('sounds/game_over.mp3');
-
+let gameSound = new Audio("sounds/main_song.mp3");
+let winningSound = new Audio("sounds/winning_sound.mp3");
+let allSounds = [gameSound];
 function init() {
   canvas = document.getElementById("canvas");
   world = new World(canvas, keyboard);
 }
+let mute = true;
+
 
 window.addEventListener("keydown", (e) => {
   switch (e.code) {
@@ -79,6 +83,7 @@ function showGameScreen(){
  * Hides the game screen
  */
 function showStartScreen(){
+  world.stopAllIntervals();
   let startScreen = document.getElementById('startscreen');
   let gameScreen = document.getElementById('fullscreen');
   startScreen.classList.remove('dnone');
@@ -87,7 +92,7 @@ function showStartScreen(){
 
 function gameOver(){
   world.stopAllIntervals();
-  gameOver_sound.play();
+  gameOver_sound.play();  
   let gameOverDiv = document.getElementById('game-over');
   gameOverDiv.innerHTML = /*html*/ `<img class="game-over" src='img/9_intro_outro_screens/game_over/you lost.png'>
   <div class="retry-btn btn" onclick="restartGame()"><img class="retryIcon" src="img/revolver.svg"/>Retry</div>`;
@@ -95,6 +100,7 @@ function gameOver(){
 
 function gameWon(){
   world.stopAllIntervals();
+  winningSound.play();
   let gameWonDiv = document.getElementById('game-won');
   gameWonDiv.innerHTML = /*html*/ `<div class="blur-background"><h2 class="game-won">You won the game!</h2>
   <div class="retry-btn btn" onclick="restartGame()"><img class="retryIcon" src="img/revolver.svg"/>Retry</div></div>`;
@@ -105,17 +111,32 @@ function restartGame(){
   location.reload();
 }
 
-function showKeyLegend(){
-  let startScreenDiv = document.getElementById('startscreen');
-  startScreenDiv.innerHTML += /*html*/ `<div id="keyboard"><div class="blur-background"><img class="closeButton" src="img/close2.svg" onclick="hideKeyLegend()"/>
-  <img class="key-legend" src="img/tastatur-removebg.png"/>`
+function showKeyLegend(id){
+  let keyboardLegend = document.getElementById(id);
+  keyboardLegend.style.display = "";
 }
 
-function hideKeyLegend(){
-  let startScreenDiv = document.getElementById('startscreen');
-  startScreenDiv.innerHTML = /*html*/ `<img class="startImg" src="img/9_intro_outro_screens/start/startscreen_1.png" alt="" />
-  <div class="startNavigation">
-    <div class="btn" onclick="playGame()"><img class="retryIcon" src="img/revolver.svg"/>Play</div>
-    <img class ="startNavigationIcon" src="img/keyboard.svg" alt="keyboard" onclick="showKeyLegend()"/>
-  </div>`
+function hideKeyLegend(id){
+  let keyboardLegend = document.getElementById(id);
+  keyboardLegend.style.display = "none";
+}
+
+function playGameSound(){
+    gameSound.play();
+}
+
+function muteSound(id){
+  if(mute){
+    mute = false;
+    allSounds.forEach(element => {
+      element.pause();
+    });
+    document.getElementById(id).src="img/sound-off.svg";
+  }else{
+    mute = true;
+    allSounds.forEach(element => {
+      element.play();
+    });
+    document.getElementById(id).src="img/sound.svg";
+  }
 }

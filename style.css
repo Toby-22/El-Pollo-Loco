@@ -135,16 +135,10 @@ canvas {
     color: #ffdd2c;
 }
 
-#keyboard{
+.keyboard-legend{
     z-index: 3;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    font-size: 52px;
-    color: #ffdd2c;
 }
+
 .retry-btn{
     position: absolute;
     bottom: 30px;
@@ -193,6 +187,11 @@ canvas {
     canvas {
         width: 100%;
     }
+    .startImg{ 
+        width: 100%;
+        height: auto;
+    }
+
 }
 
 @media only screen and (max-height: 480px){

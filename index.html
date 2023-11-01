@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>El Pollo Loco</title>
+    <link rel="shortcut icon" href="img/2_character_pepe/2_walk/W-21.png" type="image/x-icon">
     <link rel="stylesheet" href="style.css" />
     <script src="js/models/drawable-objects.class.js"></script>
     <script src="js/models/movable-object.class.js"></script>
@@ -21,27 +22,38 @@
     <script src="js/models/level.class.js"></script>
     <script src="js/models/endboss.class.js"></script>
     <script src="js/levels/level1.js"></script>
-    <script src="js/game.js"></script>
+
   </head>
-  <body>
+  <body onload="playGameSound()">
     <h1>El Pollo Loco</h1>
     <div id="startscreen" class="startscreen">
       <img class="startImg" src="img/9_intro_outro_screens/start/startscreen_1.png" alt="" />
+      <div id="keyboard-legend" class="blur-background keyboard-legend" style="display: none;">
+        <img class="closeButton" src="img/close2.svg" onclick="hideKeyLegend('keyboard-legend')"/>
+        <img class="key-legend" src="img/tastatur-removebg.png"/>
+      </div>
       <div class="startNavigation">
-        <!-- <img class="playImg" src="img/play_icon.svg" alt="" onclick="playGame()"> -->
         <div class="btn" onclick="playGame()"><img class="retryIcon" src="img/revolver.svg"/>Play</div>
-        <img class ="startNavigationIcon" src="img/keyboard.svg" alt="keyboard" onclick="showKeyLegend()"/>
+        <img class ="startNavigationIcon" src="img/keyboard.svg" alt="keyboard" onclick="showKeyLegend('keyboard-legend')"/>
+        <img id="mute-Button" class ="startNavigationIcon" src="img/sound.svg" alt="Sound on" onclick="muteSound('mute-Button')"/>
       </div>
     </div>
 
     <div id="fullscreen" class="dnone">
       <div id="btn-box">
         <img src="img/home.svg" alt="Homebutton" onclick="showStartScreen()"/>
+        <img id="mute-Button-Game" class ="Homebutton" src="img/sound.svg" alt="Sound on" onclick="muteSound('mute-Button-Game')"/>
+        <img class ="startNavigationIcon" src="img/keyboard.svg" alt="keyboard" onclick="showKeyLegend('keyboard-legend-game')"/>
         <img src="img/expand-solid.svg" alt="Fullscreenbutton" onclick="enterFullscreen(canvas)"/>
       </div>
       <div id="game-over"></div>
       <div id="game-won"></div>
+      <div id="keyboard-legend-game" class="blur-background keyboard-legend" style="display: none;">
+        <img class="closeButton" src="img/close2.svg" onclick="hideKeyLegend('keyboard-legend-game')"/>
+        <img class="key-legend" src="img/tastatur-removebg.png"/>
+      </div>
       <canvas width="720" height="480" id="canvas"></canvas>
     </div>
+    <script src="js/game.js"></script>
   </body>
 </html>
