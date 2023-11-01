@@ -22,7 +22,10 @@ class Endboss extends MovableObject {
     "img/4_enemie_boss_chicken/5_dead/G25.png",
     "img/4_enemie_boss_chicken/5_dead/G26.png",
   ];
-  energy = 20;
+  energy = 40;
+  kill_sound = new Audio("sounds/Endboss_kill.mp3");   
+  hurt_sound = new Audio("sounds/endboss_hurt.mp3");
+  bog_sound = new Audio("sounds/endboss_bog.mp3");
 
   constructor() {
     super().loadImage(this.IMAGES_WALKING[0]);
@@ -37,11 +40,14 @@ class Endboss extends MovableObject {
     setInterval(() => {
       if (this.isHurt()) {
         this.playAnimation(this.IMAGES_HURT);
+        this.hurt_sound.play();
       } else if (this.isDead()) {
         this.playAnimation(this.IMAGES_DEAD);
-        setTimeout(gameWon, 1000);
+        this.kill_sound.play();
+        setTimeout(gameWon, 1200);
       } else {
         this.playAnimation(this.IMAGES_WALKING);
+        this.bog_sound.play();
       }
     }, 50);
   }

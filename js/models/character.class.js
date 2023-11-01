@@ -38,6 +38,9 @@ class Character extends MovableObject {
   ]
   world;
   walking_sound = new Audio("sounds/walking.mp3");
+  hurt_sound = new Audio("sounds/pepe-hurt.mp3");
+  die_sound = new Audio("sounds/pepe_die.mp3");
+  jump_sound = new Audio("sounds/pepe_jump.mp3");
   coins = 0;
   maxPortableBottles = 8;
   bottles = 0;
@@ -67,6 +70,7 @@ class Character extends MovableObject {
       }
       if(this.world.keyboard.UP && !this.isAboveGround()){
         this.jump();
+        this.jump_sound.play();
       }
 
       this.world.camera_x = -this.x + 100;
@@ -74,8 +78,10 @@ class Character extends MovableObject {
     setInterval(() => {
       if(this.isHurt()){
         this.playAnimation(this.IMAGES_HURT);
+        this.hurt_sound.play();
       } else if(this.isDead()){
         this.playAnimation(this.IMAGES_DEAD);
+        this.die_sound.play();
         setTimeout(gameOver, 1000);
       } else if(this.isAboveGround()) {
         this.playAnimation(this.IMAGES_JUMPING);

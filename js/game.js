@@ -1,6 +1,7 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
+let gameOver_sound = new Audio('sounds/game_over.mp3');
 
 function init() {
   canvas = document.getElementById("canvas");
@@ -86,6 +87,7 @@ function showStartScreen(){
 
 function gameOver(){
   world.stopAllIntervals();
+  gameOver_sound.play();
   let gameOverDiv = document.getElementById('game-over');
   gameOverDiv.innerHTML = /*html*/ `<img class="game-over" src='img/9_intro_outro_screens/game_over/you lost.png'>
   <div class="retry-btn btn" onclick="restartGame()"><img class="retryIcon" src="img/revolver.svg"/>Retry</div>`;
