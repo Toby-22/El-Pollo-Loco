@@ -43,6 +43,12 @@ class Endboss extends MovableObject {
   kill_sound = new Audio("sounds/Endboss_kill.mp3");   
   hurt_sound = new Audio("sounds/endboss_hurt.mp3");
   bog_sound = new Audio("sounds/endboss_bog.mp3");
+  offset = {
+    top: 0,
+    left: 30,
+    right: 0,
+    bottom: 0
+  }
 
   constructor() {
     super().loadImage(this.IMAGES_WALKING[0]);

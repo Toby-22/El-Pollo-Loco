@@ -44,6 +44,12 @@ class Character extends MovableObject {
   coins = 0;
   maxPortableBottles = 8;
   bottles = 0;
+  offset = {
+    top: 120,
+    left: 40,
+    right: 30,
+    bottom: 20
+}
 
   constructor() {
     super().loadImage("img/2_character_pepe/2_walk/W-21.png");
@@ -82,7 +88,7 @@ class Character extends MovableObject {
       } else if(this.isDead()){
         this.playAnimation(this.IMAGES_DEAD);
         this.die_sound.play();
-        setTimeout(gameOver, 1000);
+        setTimeout(gameOver, 500);
       } else if(this.isAboveGround()) {
         this.playAnimation(this.IMAGES_JUMPING);
       } else {
