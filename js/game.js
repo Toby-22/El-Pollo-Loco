@@ -52,6 +52,33 @@ window.addEventListener("keyup", (e) => {
   }
 });
 
+function touchButtonListener() {
+  document.getElementById('button-left').addEventListener('touchstart', (e)=>{
+    keyboard.LEFT = true;
+  });
+  document.getElementById('button-left').addEventListener('touchend', (e)=>{
+    keyboard.LEFT = false;
+  });
+  document.getElementById('button-right').addEventListener('touchstart', (e)=>{
+    keyboard.RIGHT = true;
+  });
+  document.getElementById('button-right').addEventListener('touchend', (e)=>{
+    keyboard.RIGHT = false;
+  });
+  document.getElementById('button-jump').addEventListener('touchstart', (e)=>{
+    keyboard.UP = true;
+  });
+  document.getElementById('button-jump').addEventListener('touchend', (e)=>{
+    keyboard.UP = false;
+  });
+  document.getElementById('button-throw').addEventListener('touchstart', (e)=>{
+    keyboard.SPACE = true;
+  });
+  document.getElementById('button-throw').addEventListener('touchend', (e)=>{
+    keyboard.SPACE = false;
+  });
+};
+
 function enterFullscreen(element) {
   if(element.requestFullscreen) {
     element.requestFullscreen();
@@ -67,6 +94,7 @@ function playGame(){
   initLevel1();
   init();
   showGameScreen();
+  touchButtonListener();
 }
 
 /**

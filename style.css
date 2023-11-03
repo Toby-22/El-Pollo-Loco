@@ -134,6 +134,7 @@ canvas {
     justify-content: center;
     font-size: 52px;
     color: #ffdd2c;
+    text-align: center;
 }
 
 .keyboard-legend{
@@ -188,6 +189,32 @@ canvas {
     cursor: pointer;
 }
 
+.touch-div{
+    justify-content: space-between;
+    align-items: center;
+    width: 720px;
+    position: absolute;
+    z-index: 10;
+    bottom: 0;
+    display: none;
+}
+
+.touch-buttons{
+    width: 30px;
+    border-radius: 10px;
+    border: 1px solid;
+    padding: 2px;
+    background: #ffdd2c;
+    cursor: pointer;
+}
+.touch-buttons:hover{
+    background-color: #FFCB00;
+}
+
+.pad4px{
+    padding: 4px;
+}
+
 @media only screen and (max-width: 720px){
     canvas {
         width: 100%;
@@ -196,7 +223,13 @@ canvas {
         width: 100%;
         height: auto;
     }
-
+    .touch-div{
+        width: 100%;
+        display: flex;
+    }
+    h1{
+        display: none;
+    }
 }
 
 @media only screen and (max-height: 480px){
@@ -204,3 +237,12 @@ canvas {
         height: 100vh;
     }
 }
+
+/* @media (orientation: landscape) {
+    h1 {
+        display: none;
+    }
+    body{
+        height: 100%;
+    }
+  } */

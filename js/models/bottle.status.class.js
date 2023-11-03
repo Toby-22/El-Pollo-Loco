@@ -1,3 +1,6 @@
+/**
+ * This class represents a bottle object that inherits from a drawable object.
+ */
 class BottleStatus extends DrawableObject {
 
     IMAGES_BOTTLE_STATUS = [
@@ -22,13 +25,21 @@ class BottleStatus extends DrawableObject {
         this.maxBottles = character.maxPortableBottles;
         this.setBottleStatus(0);
       }
-    
+      
+      /**
+       * this function set the statusbar for bottles after collected one
+       * @param {*} collectedBottles 
+       */
       setBottleStatus(collectedBottles) {
         this.percentage = (100 * collectedBottles)/ this.maxBottles;
         let path = this.IMAGES_BOTTLE_STATUS[this.resolvedImageIndex()];
         this.img = this.imageCache[path];
       }
       
+      /**
+       * this function returns the img-id which represents the statusbar volume
+       * @returns the index for the img
+       */
       resolvedImageIndex() {
         if (this.percentage == 100) {
           return 5;

@@ -1,5 +1,8 @@
 let level1;
 
+/**
+ * initialize a new level with Enemys, Clouds, Bottles and Coins 
+ */
 function initLevel1(){
 level1 = new Level(
     [new Chicken(), new Chicken(), new Chicken(), new Endboss()],
