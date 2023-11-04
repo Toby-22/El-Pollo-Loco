@@ -1,7 +1,7 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
-let gameOver_sound = new Audio('sounds/game_over.mp3');
+let gameOver_sound = new Audio("sounds/game_over.mp3");
 let gameSound = new Audio("sounds/main_song.mp3");
 let winningSound = new Audio("sounds/winning_sound.mp3");
 let allSounds = [gameSound];
@@ -10,7 +10,6 @@ function init() {
   world = new World(canvas, keyboard);
 }
 let mute = true;
-
 
 window.addEventListener("keydown", (e) => {
   switch (e.code) {
@@ -52,45 +51,59 @@ window.addEventListener("keyup", (e) => {
   }
 });
 
+/**
+ * this function checks if a toch button is touched
+ */
 function touchButtonListener() {
-  document.getElementById('button-left').addEventListener('touchstart', (e)=>{
+  document.getElementById("button-left").addEventListener("touchstart", (e) => {
     keyboard.LEFT = true;
   });
-  document.getElementById('button-left').addEventListener('touchend', (e)=>{
+  document.getElementById("button-left").addEventListener("touchend", (e) => {
     keyboard.LEFT = false;
   });
-  document.getElementById('button-right').addEventListener('touchstart', (e)=>{
-    keyboard.RIGHT = true;
-  });
-  document.getElementById('button-right').addEventListener('touchend', (e)=>{
+  document
+    .getElementById("button-right")
+    .addEventListener("touchstart", (e) => {
+      keyboard.RIGHT = true;
+    });
+  document.getElementById("button-right").addEventListener("touchend", (e) => {
     keyboard.RIGHT = false;
   });
-  document.getElementById('button-jump').addEventListener('touchstart', (e)=>{
+  document.getElementById("button-jump").addEventListener("touchstart", (e) => {
     keyboard.UP = true;
   });
-  document.getElementById('button-jump').addEventListener('touchend', (e)=>{
+  document.getElementById("button-jump").addEventListener("touchend", (e) => {
     keyboard.UP = false;
   });
-  document.getElementById('button-throw').addEventListener('touchstart', (e)=>{
-    keyboard.SPACE = true;
-  });
-  document.getElementById('button-throw').addEventListener('touchend', (e)=>{
+  document
+    .getElementById("button-throw")
+    .addEventListener("touchstart", (e) => {
+      keyboard.SPACE = true;
+    });
+  document.getElementById("button-throw").addEventListener("touchend", (e) => {
     keyboard.SPACE = false;
   });
-};
+}
 
+/**
+ * this function shows the canvas in fullscreen mode
+ */
 function enterFullscreen(element) {
-  if(element.requestFullscreen) {
+  if (element.requestFullscreen) {
     element.requestFullscreen();
-  } else if(element.msRequestFullscreen) {      // for IE11 (remove June 15, 2022)
+  } else if (element.msRequestFullscreen) {
+    // for IE11 (remove June 15, 2022)
     element.msRequestFullscreen();
-  } else if(element.webkitRequestFullscreen) {  // iOS Safari
+  } else if (element.webkitRequestFullscreen) {
+    // iOS Safari
     element.webkitRequestFullscreen();
   }
-};
+}
 
-function playGame(){
-  console.log('Game is started');
+/**
+ * this function starts the game
+ */
+function playGame() {
   initLevel1();
   init();
   showGameScreen();
@@ -98,73 +111,90 @@ function playGame(){
 }
 
 /**
- * Hides the start screen
+ * This funciton hides the start screen
  */
-function showGameScreen(){
-  let startScreen = document.getElementById('startscreen');
-  let gameScreen = document.getElementById('fullscreen');
-  startScreen.classList.add('dnone');
-  gameScreen.classList.remove('dnone');
+function showGameScreen() {
+  let startScreen = document.getElementById("startscreen");
+  let gameScreen = document.getElementById("fullscreen");
+  startScreen.classList.add("dnone");
+  gameScreen.classList.remove("dnone");
 }
 
 /**
- * Hides the game screen
+ * this function hides the game screen
  */
-function showStartScreen(){
+function showStartScreen() {
   world.stopAllIntervals();
-  let startScreen = document.getElementById('startscreen');
-  let gameScreen = document.getElementById('fullscreen');
-  startScreen.classList.remove('dnone');
-  gameScreen.classList.add('dnone');
+  let startScreen = document.getElementById("startscreen");
+  let gameScreen = document.getElementById("fullscreen");
+  startScreen.classList.remove("dnone");
+  gameScreen.classList.add("dnone");
 }
 
-function gameOver(){
+/**
+ * this function sets the game to game over
+ */
+function gameOver() {
   world.stopAllIntervals();
-  gameOver_sound.play();  
-  let gameOverDiv = document.getElementById('game-over');
+  gameOver_sound.play();
+  let gameOverDiv = document.getElementById("game-over");
   gameOverDiv.innerHTML = /*html*/ `<img class="game-over" src='img/9_intro_outro_screens/game_over/you lost.png'>
   <div class="retry-btn btn" onclick="restartGame()"><img class="retryIcon" src="img/revolver.svg"/>Retry</div>`;
 }
 
-function gameWon(){
+/**
+ * this function sets the game to win
+ */
+function gameWon() {
   world.stopAllIntervals();
   winningSound.play();
-  let gameWonDiv = document.getElementById('game-won');
+  let gameWonDiv = document.getElementById("game-won");
   gameWonDiv.innerHTML = /*html*/ `<div class="blur-background"><h2 class="game-won">You won the game!</h2>
   <div class="retry-btn btn" onclick="restartGame()"><img class="retryIcon" src="img/revolver.svg"/>Retry</div></div>`;
 }
 
-function restartGame(){
+/**
+ * this funciton restart the game
+ */
+function restartGame() {
   console.log("Retry Button is pressed");
   location.reload();
 }
 
-function showKeyLegend(id){
+/**
+ * this function shows the keyboard legend
+ * @param {id} id
+ */
+function showKeyLegend(id) {
   let keyboardLegend = document.getElementById(id);
   keyboardLegend.style.display = "";
 }
 
-function hideKeyLegend(id){
+/**
+ * this function hides the keyboard legend
+ * @param {id} id
+ */
+function hideKeyLegend(id) {
   let keyboardLegend = document.getElementById(id);
   keyboardLegend.style.display = "none";
 }
 
-function playGameSound(){
-    gameSound.play();
+function playGameSound() {
+  gameSound.play();
 }
 
-function muteSound(id){
-  if(mute){
+function muteSound(id) {
+  if (mute) {
     mute = false;
-    allSounds.forEach(element => {
+    allSounds.forEach((element) => {
       element.pause();
     });
-    document.getElementById(id).src="img/sound-off.svg";
-  }else{
+    document.getElementById(id).src = "img/sound-off.svg";
+  } else {
     mute = true;
-    allSounds.forEach(element => {
+    allSounds.forEach((element) => {
       element.play();
     });
-    document.getElementById(id).src="img/sound.svg";
+    document.getElementById(id).src = "img/sound.svg";
   }
 }

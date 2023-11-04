@@ -1,3 +1,6 @@
+/**
+ * this class represents the world
+ */
 class World {
   character = new Character();
   statusbar = new StatusBar();
@@ -23,6 +26,9 @@ class World {
     this.character.world = this;
   }
 
+  /**
+   * this function let run the game
+   */
   run() {
     setInterval(() => {
       this.checkCollisions();
@@ -34,6 +40,9 @@ class World {
     }, 100);
   }
 
+  /**
+   * this function checks if a object is throwen
+   */
   checkThrowObjects() {
     if (this.keyboard.SPACE && this.character.bottles > 0) {
       let bottle = new ThrowableObject(
@@ -46,15 +55,25 @@ class World {
     }
   }
 
+  /**
+   * this function checks if a enemy is collide with the character
+   */
   checkCollisions() {
     this.level.enemies.forEach((enemy) => {
-      if (this.character.isColliding(enemy) && !this.character.isCollidingFromTop(enemy) && enemy.energy > 0) {
+      if (
+        this.character.isColliding(enemy) &&
+        !this.character.isCollidingFromTop(enemy) &&
+        enemy.energy > 0
+      ) {
         this.character.hit();
         this.statusbar.setPercentage(this.character.energy);
       }
     });
   }
 
+  /**
+   * this function checks if the character collect a coin
+   */
   checkCollectCoins() {
     let collectCoinsCounter = 0;
     this.level.collectableCoins.forEach((coin) => {
@@ -67,6 +86,9 @@ class World {
     });
   }
 
+  /**
+   * this function checks if the character collect a bottle
+   */
   checkCollectBottle() {
     let collectBottelsCounter = 0;
     this.level.collectableBottles.forEach((bottle) => {
@@ -93,14 +115,17 @@ class World {
     });
   }
 
-  checkJumpOnEnemy(){
+  /**
+   * this functin checks it the character jumps on a enemy
+   */
+  checkJumpOnEnemy() {
     this.level.enemies.forEach((enemy) => {
-      if(this.character.isCollidingFromTop(enemy)){
+      if (this.character.isCollidingFromTop(enemy)) {
         enemy.hit();
         this.character.jump();
-        console.log("Pepe jumped on the enemy!")
+        console.log("Pepe jumped on the enemy!");
       }
-    })
+    });
   }
 
   /**
@@ -115,6 +140,9 @@ class World {
     }
   }
 
+  /**
+   * this function draws the objects on the canvas
+   */
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.ctx.translate(this.camera_x, 0);
@@ -140,13 +168,21 @@ class World {
       self.draw();
     });
   }
-
+  
+  /**
+   * this function add some objects to the map
+   * @param {object} objects 
+   */
   addObjectsToMap(objects) {
     objects.forEach((object) => {
       this.addToMap(object);
     });
   }
 
+  /**
+   * this function draw a object on the map
+   * @param {object} mo 
+   */
   addToMap(mo) {
     if (mo.otherDirection) {
       this.flipImage(mo);
@@ -158,6 +194,10 @@ class World {
     }
   }
 
+  /**
+   * this functions flips a image
+   * @param {object} mo 
+   */
   flipImage(mo) {
     this.ctx.save();
     this.ctx.translate(mo.width, 0);
@@ -165,16 +205,21 @@ class World {
     mo.x = mo.x * -1;
   }
 
+  /**
+   * this functions flips a fliped image back
+   * @param {object} mo 
+   */
   flipImageBack(mo) {
     mo.x = mo.x * -1;
     this.ctx.restore();
   }
 
-  stopAllIntervals(){
+  /**
+   * this function stopps all intervals on the screen
+   */
+  stopAllIntervals() {
     for (let index = 0; index < 1000; index++) {
       window.clearInterval(index);
-      
     }
   }
-
 }
