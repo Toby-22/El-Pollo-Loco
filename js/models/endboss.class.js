@@ -1,3 +1,6 @@
+/**
+ * this class represents a Endboss enemy.
+ */
 class Endboss extends MovableObject {
   height = 400;
   width = 250;
@@ -18,7 +21,7 @@ class Endboss extends MovableObject {
     "img/4_enemie_boss_chicken/2_alert/G10.png",
     "img/4_enemie_boss_chicken/2_alert/G11.png",
     "img/4_enemie_boss_chicken/2_alert/G12.png",
-  ]
+  ];
   IMAGES_ATTACK = [
     "img/4_enemie_boss_chicken/3_attack/G13.png",
     "img/4_enemie_boss_chicken/3_attack/G14.png",
@@ -28,7 +31,7 @@ class Endboss extends MovableObject {
     "img/4_enemie_boss_chicken/3_attack/G18.png",
     "img/4_enemie_boss_chicken/3_attack/G19.png",
     "img/4_enemie_boss_chicken/3_attack/G20.png",
-  ]
+  ];
   IMAGES_HURT = [
     "img/4_enemie_boss_chicken/4_hurt/G21.png",
     "img/4_enemie_boss_chicken/4_hurt/G22.png",
@@ -40,15 +43,15 @@ class Endboss extends MovableObject {
     "img/4_enemie_boss_chicken/5_dead/G26.png",
   ];
   energy = 40;
-  kill_sound = new Audio("sounds/Endboss_kill.mp3");   
+  kill_sound = new Audio("sounds/Endboss_kill.mp3");
   hurt_sound = new Audio("sounds/endboss_hurt.mp3");
   bog_sound = new Audio("sounds/endboss_bog.mp3");
   offset = {
     top: 0,
     left: 30,
     right: 0,
-    bottom: 0
-  }
+    bottom: 0,
+  };
 
   constructor() {
     super().loadImage(this.IMAGES_WALKING[0]);
@@ -60,6 +63,9 @@ class Endboss extends MovableObject {
     this.animate();
   }
 
+  /**
+   * this function animates the endboss object
+   */
   animate() {
     let i = 0;
     setInterval(() => {
@@ -70,19 +76,18 @@ class Endboss extends MovableObject {
         this.playAnimation(this.IMAGES_DEAD);
         this.kill_sound.play();
         setTimeout(gameWon, 1200);
-      } else if(world.character.x >= 2100){
+      } else if (world.character.x >= 2100) {
         console.log(i);
-        if (i < 120){
+        if (i < 120) {
           this.playAnimation(this.IMAGES_ATTACK);
           this.bog_sound.play();
-        }else{
-        this.playAnimation(this.IMAGES_WALKING);
-        this.bog_sound.play();
-        this.moveLeft();
+        } else {
+          this.playAnimation(this.IMAGES_WALKING);
+          this.bog_sound.play();
+          this.moveLeft();
         }
       }
       i++;
     }, 50);
   }
 }
-

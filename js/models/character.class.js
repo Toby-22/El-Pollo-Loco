@@ -1,3 +1,6 @@
+/**
+ * This class represents a players character that inherits from a movable object.
+ */
 class Character extends MovableObject {
   width = 170;
   height = 250;
@@ -23,19 +26,19 @@ class Character extends MovableObject {
     "img/2_character_pepe/3_jump/J-39.png",
   ];
   IMAGES_DEAD = [
-    'img/2_character_pepe/5_dead/D-51.png',
-    'img/2_character_pepe/5_dead/D-52.png',
-    'img/2_character_pepe/5_dead/D-53.png',
-    'img/2_character_pepe/5_dead/D-54.png',
-    'img/2_character_pepe/5_dead/D-55.png',
-    'img/2_character_pepe/5_dead/D-56.png',
-    'img/2_character_pepe/5_dead/D-57.png',
+    "img/2_character_pepe/5_dead/D-51.png",
+    "img/2_character_pepe/5_dead/D-52.png",
+    "img/2_character_pepe/5_dead/D-53.png",
+    "img/2_character_pepe/5_dead/D-54.png",
+    "img/2_character_pepe/5_dead/D-55.png",
+    "img/2_character_pepe/5_dead/D-56.png",
+    "img/2_character_pepe/5_dead/D-57.png",
   ];
   IMAGES_HURT = [
-    'img/2_character_pepe/4_hurt/H-41.png',
-    'img/2_character_pepe/4_hurt/H-42.png',
-    'img/2_character_pepe/4_hurt/H-43.png',
-  ]
+    "img/2_character_pepe/4_hurt/H-41.png",
+    "img/2_character_pepe/4_hurt/H-42.png",
+    "img/2_character_pepe/4_hurt/H-43.png",
+  ];
   world;
   walking_sound = new Audio("sounds/walking.mp3");
   hurt_sound = new Audio("sounds/pepe-hurt.mp3");
@@ -48,8 +51,8 @@ class Character extends MovableObject {
     top: 120,
     left: 40,
     right: 30,
-    bottom: 20
-}
+    bottom: 20,
+  };
 
   constructor() {
     super().loadImage("img/2_character_pepe/2_walk/W-21.png");
@@ -61,6 +64,9 @@ class Character extends MovableObject {
     this.applyGravity();
   }
 
+  /**
+   * this function animates the character on the canvas
+   */
   animate() {
     setInterval(() => {
       this.walking_sound.pause();
@@ -74,7 +80,7 @@ class Character extends MovableObject {
         this.otherDirection = true;
         this.walking_sound.play();
       }
-      if(this.world.keyboard.UP && !this.isAboveGround()){
+      if (this.world.keyboard.UP && !this.isAboveGround()) {
         this.jump();
         this.jump_sound.play();
       }
@@ -82,14 +88,14 @@ class Character extends MovableObject {
       this.world.camera_x = -this.x + 100;
     }, 1000 / 60);
     setInterval(() => {
-      if(this.isHurt()){
+      if (this.isHurt()) {
         this.playAnimation(this.IMAGES_HURT);
         this.hurt_sound.play();
-      } else if(this.isDead()){
+      } else if (this.isDead()) {
         this.playAnimation(this.IMAGES_DEAD);
         this.die_sound.play();
         setTimeout(gameOver, 500);
-      } else if(this.isAboveGround()) {
+      } else if (this.isAboveGround()) {
         this.playAnimation(this.IMAGES_JUMPING);
       } else {
         if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
@@ -100,11 +106,12 @@ class Character extends MovableObject {
     }, 40);
   }
 
-  collectBottel(){
-    if(this.bottles < this.maxPortableBottles){
-    this.bottles += 1;
-    } else{
-      console.log('Sie haben die maximale Anzahl an Flschen erreicht.')
+  /**
+   * This function collects bottles and adds them to the inventory, buz no more then maximal portable Bottles
+   */
+  collectBottel() {
+    if (this.bottles < this.maxPortableBottles) {
+      this.bottles += 1;
     }
   }
 }

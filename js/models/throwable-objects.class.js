@@ -1,19 +1,22 @@
+/**
+ * this class represents a throwable object like a bottel that inherot from a movable object
+ */
 class ThrowableObject extends MovableObject {
+  constructor(x, y) {
+    super().loadImage("img/7_statusbars/3_icons/icon_salsa_bottle.png");
+    this.x = x;
+    this.y = y;
+    this.throw();
+  }
 
-    constructor(x, y){
-        super().loadImage('img/7_statusbars/3_icons/icon_salsa_bottle.png');
-        this.x = x;
-        this.y = y;
-        this.throw();
-
-    }
-
-    throw(){
-        this.speedY = 30;
-        this.applyGravity();
-        setInterval(() => {
-            this.x += 10;
-        }, 25);
-
-    }
+  /**
+   * this function throw a throwable object
+   */
+  throw() {
+    this.speedY = 30;
+    this.applyGravity();
+    setInterval(() => {
+      this.x += 10;
+    }, 25);
+  }
 }

@@ -1,3 +1,6 @@
+/**
+ * this class represents a characters live status bar object that inherits from a drawable object.
+ */
 class StatusBar extends DrawableObject {
   IMAGES_HEALT_STATUS = [
     "img/7_statusbars/1_statusbar/2_statusbar_health/blue/0.png",
@@ -20,12 +23,20 @@ class StatusBar extends DrawableObject {
     this.setPercentage(100);
   }
 
+  /**
+   * this function set characters live when it hit by an enemy
+   * @param {number} percentage
+   */
   setPercentage(percentage) {
     this.percentage = percentage;
     let path = this.IMAGES_HEALT_STATUS[this.resolvedImageIndex()];
     this.img = this.imageCache[path];
   }
 
+  /**
+   * this function returns the img-id which represents the statusbar volume
+   * @returns the index for the img
+   */
   resolvedImageIndex() {
     if (this.percentage == 100) {
       return 5;
@@ -37,7 +48,7 @@ class StatusBar extends DrawableObject {
       return 2;
     } else if (this.percentage > 20) {
       return 1;
-    } else{
+    } else {
       return 0;
     }
   }
