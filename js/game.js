@@ -178,23 +178,3 @@ function hideKeyLegend(id) {
   let keyboardLegend = document.getElementById(id);
   keyboardLegend.style.display = "none";
 }
-
-function playGameSound() {
-  gameSound.play();
-}
-
-function muteSound(id) {
-  if (mute) {
-    mute = false;
-    allSounds.forEach((element) => {
-      element.pause();
-    });
-    document.getElementById(id).src = "img/sound-off.svg";
-  } else {
-    mute = true;
-    allSounds.forEach((element) => {
-      element.play();
-    });
-    document.getElementById(id).src = "img/sound.svg";
-  }
-}

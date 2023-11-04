@@ -23,7 +23,6 @@
     <script src="js/models/endboss.class.js"></script>
     <script src="js/levels/level1.js"></script>
     <script src="js/game.js"></script>
-
   </head>
   <body>
     <h1>El Pollo Loco</h1>
@@ -36,14 +35,11 @@
       <div class="startNavigation">
         <div class="btn" onclick="playGame()"><img class="retryIcon" src="img/revolver.svg"/>Play</div>
         <img class ="startNavigationIcon" src="img/keyboard.svg" alt="keyboard" onclick="showKeyLegend('keyboard-legend')"/>
-        <img id="mute-Button" class ="startNavigationIcon" src="img/sound.svg" alt="Sound on" onclick="muteSound('mute-Button')"/>
       </div>
     </div>
-
     <div id="fullscreen" class="dnone">
       <div id="btn-box">
         <img class="cursor" src="img/home.svg" alt="Homebutton" onclick="showStartScreen()"/>
-        <img class="Homebutton cursor" id="mute-Button-Game"  src="img/sound.svg" alt="Sound on" onclick="muteSound('mute-Button-Game')"/>
         <img class="startNavigationIcon cursor" src="img/keyboard.svg" alt="keyboard" onclick="showKeyLegend('keyboard-legend-game')"/>
         <img class="cursor" src="img/expand-solid.svg" alt="Fullscreenbutton" onclick="enterFullscreen(canvas)"/>
       </div>
@@ -64,7 +60,6 @@
           <img id="button-throw" class="touch-buttons" src="img/bottle.svg" alt="bottle">
         </div>
       </div>
-    </div>
-    
+    </div> 
   </body>
 </html>
