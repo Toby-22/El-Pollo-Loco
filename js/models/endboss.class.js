@@ -5,7 +5,7 @@ class Endboss extends MovableObject {
   height = 400;
   width = 250;
   y = 50;
-  speed = 2;
+  speed = 3;
   IMAGES_WALKING = [
     "img/4_enemie_boss_chicken/1_walk/G1.png",
     "img/4_enemie_boss_chicken/1_walk/G2.png",
@@ -42,7 +42,7 @@ class Endboss extends MovableObject {
     "img/4_enemie_boss_chicken/5_dead/G25.png",
     "img/4_enemie_boss_chicken/5_dead/G26.png",
   ];
-  energy = 50;
+  energy = 80;
   kill_sound = new Audio("sounds/Endboss_kill.mp3");
   hurt_sound = new Audio("sounds/endboss_hurt.mp3");
   bog_sound = new Audio("sounds/endboss_bog.mp3");
@@ -77,7 +77,6 @@ class Endboss extends MovableObject {
         this.kill_sound.play();
         setTimeout(gameWon, 1200);
       } else if (world.character.x >= 3000) {
-        console.log(i);
         if (i < 120) {
           this.playAnimation(this.IMAGES_ATTACK);
           this.bog_sound.play();

@@ -93,8 +93,10 @@ class Character extends MovableObject {
         this.hurt_sound.play();
       } else if (this.isDead()) {
         this.playAnimation(this.IMAGES_DEAD);
+        this.hurt_sound.pause();
+        this.walking_sound.pause();
         this.die_sound.play();
-        setTimeout(gameOver, 500);
+        setTimeout(gameOver, 200);
       } else if (this.isAboveGround()) {
         this.playAnimation(this.IMAGES_JUMPING);
       } else {

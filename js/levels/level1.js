@@ -48,6 +48,10 @@ level1 = new Level(
 );
 }
 
+/**
+ * this function creates a difened quantity of bottles with a random position
+ * @param {number} quantity 
+ */
 function createBottles(quantity){
     for (let index = 0; index < quantity; index++) {
         let x = Math.random() * (3200 - 500) + 500;
@@ -56,6 +60,10 @@ function createBottles(quantity){
     }
 }
 
+/**
+ * this function creates a difened quantity of coins with a random position
+ * @param {number} quantity 
+ */
 function createCoins(quantity){
     for (let index = 0; index < quantity; index++) {
         let x = Math.random() * (3200 - 500) + 500;
@@ -64,6 +72,10 @@ function createCoins(quantity){
     }
 }
 
+/**
+ * this function creates a difened quantity of chickens with a random position plus one endbos
+ * @param {number} quantity 
+ */
 function createEnemies(quantity){
     for (let index = 0; index < quantity; index++) {
         enemies.push(new Chicken());        

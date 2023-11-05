@@ -9,14 +9,15 @@ class Chicken extends MovableObject {
   ];
   IMAGES_DEAD = ["img/3_enemies_chicken/chicken_normal/2_dead/dead.png"];
   dead_sound = new Audio("sounds/chicken_death.mp3");
+  y = 350;
 
   constructor() {
     super().loadImage("img/3_enemies_chicken/chicken_normal/1_walk/1_w.png");
-    this.x = 500 + Math.random() * 3200;
+    this.x = 600 + Math.random() * 3300;
     this.loadImages(this.IMAGES_WALKING);
     this.loadImages(this.IMAGES_DEAD);
     this.animate();
-    this.speed = 0.15 + Math.random() * 0.2;
+    this.speed = 0.5 + Math.random() * 1.5;
     this.energy = 5;
   }
 

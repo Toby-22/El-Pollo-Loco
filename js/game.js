@@ -122,11 +122,7 @@ function showGameScreen() {
  * this function hides the game screen
  */
 function showStartScreen() {
-  world.stopAllIntervals();
-  let startScreen = document.getElementById("startscreen");
-  let gameScreen = document.getElementById("fullscreen");
-  startScreen.classList.remove("dnone");
-  gameScreen.classList.add("dnone");
+  location.reload();
 }
 
 /**
@@ -147,7 +143,7 @@ function gameWon() {
   world.stopAllIntervals();
   winningSound.play();
   let gameWonDiv = document.getElementById("game-won");
-  gameWonDiv.innerHTML = /*html*/ `<div class="blur-background"><h2 class="game-won">You won the game!</h2>
+  gameWonDiv.innerHTML = /*html*/ `<div class="blur-background z-index-3"><h2 class="game-won">You won the game!</h2>
   <div class="retry-btn btn" onclick="restartGame()"><img class="retryIcon" src="img/revolver.svg"/>Retry</div></div>`;
 }
 

@@ -109,7 +109,6 @@ class World {
       this.bottles.forEach((bottle) => {
         if (bottle.isColliding(enemy)) {
           enemy.hit();
-          console.log("The Enemy" + enemy + "is Hit by a Bottle!");
         }
       });
     });
@@ -123,7 +122,6 @@ class World {
       if (this.character.isCollidingFromTop(enemy)) {
         enemy.hit();
         this.character.jump();
-        console.log("Pepe jumped on the enemy!");
       }
     });
   }
@@ -218,7 +216,7 @@ class World {
    * this function stopps all intervals on the screen
    */
   stopAllIntervals() {
-    for (let index = 0; index < 1000; index++) {
+    for (let index = 0; index < 200; index++) {
       window.clearInterval(index);
     }
   }
