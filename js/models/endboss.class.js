@@ -42,7 +42,7 @@ class Endboss extends MovableObject {
     "img/4_enemie_boss_chicken/5_dead/G25.png",
     "img/4_enemie_boss_chicken/5_dead/G26.png",
   ];
-  energy = 40;
+  energy = 50;
   kill_sound = new Audio("sounds/Endboss_kill.mp3");
   hurt_sound = new Audio("sounds/endboss_hurt.mp3");
   bog_sound = new Audio("sounds/endboss_bog.mp3");
@@ -59,7 +59,7 @@ class Endboss extends MovableObject {
     this.loadImages(this.IMAGES_HURT);
     this.loadImages(this.IMAGES_DEAD);
     this.loadImages(this.IMAGES_ATTACK);
-    this.x = 2500;
+    this.x = 3500;
     this.animate();
   }
 
@@ -76,7 +76,7 @@ class Endboss extends MovableObject {
         this.playAnimation(this.IMAGES_DEAD);
         this.kill_sound.play();
         setTimeout(gameWon, 1200);
-      } else if (world.character.x >= 2100) {
+      } else if (world.character.x >= 3000) {
         console.log(i);
         if (i < 120) {
           this.playAnimation(this.IMAGES_ATTACK);

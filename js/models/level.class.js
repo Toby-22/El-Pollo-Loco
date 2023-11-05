@@ -7,7 +7,7 @@ class Level {
   backgroundObjects;
   collectableCoins;
   collectableBottles;
-  level_end_x = 2200;
+  level_end_x = 4000;
 
   constructor(
     enemies,

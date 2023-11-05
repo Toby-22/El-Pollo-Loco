@@ -2,9 +2,7 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 let gameOver_sound = new Audio("sounds/game_over.mp3");
-let gameSound = new Audio("sounds/main_song.mp3");
 let winningSound = new Audio("sounds/winning_sound.mp3");
-let allSounds = [gameSound];
 function init() {
   canvas = document.getElementById("canvas");
   world = new World(canvas, keyboard);
