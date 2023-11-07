@@ -12,6 +12,8 @@ class World {
   keyboard;
   camera_x = 0;
   bottles = [];
+  enbossInAction = false;
+  last_bottle_throw = 0;
 
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
@@ -44,7 +46,7 @@ class World {
    * this function checks if a object is throwen
    */
   checkThrowObjects() {
-    if (this.keyboard.SPACE && this.character.bottles > 0) {
+    if (this.keyboard.SPACE && this.character.bottles > 0 && this.isBottleInThrow()) {
       let bottle = new ThrowableObject(
         this.character.x + 100,
         this.character.y + 50
@@ -52,7 +54,17 @@ class World {
       this.bottles.push(bottle);
       this.character.bottles -= 1;
       this.bottleStatusBar.setBottleStatus(this.character.bottles);
+      this.last_bottle_throw = new Date().getTime();
     }
+  }
+
+  /**
+   * this function returns True if between the last bottle thorw and now more then x time.
+   * @returns boolean
+   */
+  isBottleInThrow(){
+    let timepassed = new Date().getTime() - this.last_bottle_throw;
+    return timepassed > 600;
   }
 
   /**

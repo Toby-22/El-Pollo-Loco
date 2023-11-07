@@ -73,9 +73,7 @@ function touchButtonListener() {
   document.getElementById("button-jump").addEventListener("touchend", (e) => {
     keyboard.UP = false;
   });
-  document
-    .getElementById("button-throw")
-    .addEventListener("touchstart", (e) => {
+  document.getElementById("button-throw").addEventListener("touchstart", (e) => {
       keyboard.SPACE = true;
     });
   document.getElementById("button-throw").addEventListener("touchend", (e) => {

@@ -52,6 +52,7 @@ class Endboss extends MovableObject {
     right: 0,
     bottom: 0,
   };
+  isWaiting = true;
 
   constructor() {
     super().loadImage(this.IMAGES_WALKING[0]);
@@ -67,7 +68,6 @@ class Endboss extends MovableObject {
    * this function animates the endboss object
    */
   animate() {
-    let i = 0;
     setInterval(() => {
       if (this.isHurt()) {
         this.playAnimation(this.IMAGES_HURT);
@@ -75,18 +75,12 @@ class Endboss extends MovableObject {
       } else if (this.isDead()) {
         this.playAnimation(this.IMAGES_DEAD);
         this.kill_sound.play();
-        setTimeout(gameWon, 1200);
-      } else if (world.character.x >= 3000) {
-        if (i < 120) {
-          this.playAnimation(this.IMAGES_ATTACK);
-          this.bog_sound.play();
-        } else {
-          this.playAnimation(this.IMAGES_WALKING);
-          this.bog_sound.play();
-          this.moveLeft();
-        }
+        setTimeout(gameWon, 1000);
+      } else if (world.enbossInAction) {
+        this.playAnimation(this.IMAGES_WALKING);
+        this.bog_sound.play();
+        this.moveLeft();
       }
-      i++;
     }, 50);
   }
 }
