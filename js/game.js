@@ -7,7 +7,7 @@ function init() {
   canvas = document.getElementById("canvas");
   world = new World(canvas, keyboard);
 }
-let mute = true;
+let isSoundOn = true;
 
 window.addEventListener("keydown", (e) => {
   switch (e.code) {
@@ -128,7 +128,9 @@ function showStartScreen() {
  */
 function gameOver() {
   world.stopAllIntervals();
+  if(isSoundOn){
   gameOver_sound.play();
+  }
   let gameOverDiv = document.getElementById("game-over");
   gameOverDiv.innerHTML = /*html*/ `<img class="game-over" src='img/9_intro_outro_screens/game_over/you lost.png'>
   <div class="retry-btn btn" onclick="restartGame()"><img class="retryIcon" src="img/revolver.svg"/>Retry</div>`;
@@ -139,7 +141,9 @@ function gameOver() {
  */
 function gameWon() {
   world.stopAllIntervals();
+  if (isSoundOn){
   winningSound.play();
+  }
   let gameWonDiv = document.getElementById("game-won");
   gameWonDiv.innerHTML = /*html*/ `<div class="blur-background z-index-3"><h2 class="game-won">You won the game!</h2>
   <div class="retry-btn btn" onclick="restartGame()"><img class="retryIcon" src="img/revolver.svg"/>Retry</div></div>`;
@@ -169,4 +173,18 @@ function showKeyLegend(id) {
 function hideKeyLegend(id) {
   let keyboardLegend = document.getElementById(id);
   keyboardLegend.style.display = "none";
+}
+
+/**
+ * this function mute and unmute the sound by click on the mute button
+ */
+function muteSound(){
+  let soundButton = document.getElementById('mute-Button')
+  if (isSoundOn){
+    soundButton.src = 'img/sound-off.svg';
+    isSoundOn = false;
+  } else {
+    soundButton.src = 'img/sound.svg';
+    isSoundOn = true;
+  }
 }

@@ -71,14 +71,20 @@ class Endboss extends MovableObject {
     setInterval(() => {
       if (this.isHurt()) {
         this.playAnimation(this.IMAGES_HURT);
-        this.hurt_sound.play();
+        if (isSoundOn) {
+          this.hurt_sound.play();
+        }
       } else if (this.isDead()) {
         this.playAnimation(this.IMAGES_DEAD);
-        this.kill_sound.play();
+        if (isSoundOn) {
+          this.kill_sound.play();
+        }
         setTimeout(gameWon, 1000);
       } else if (world.enbossInAction) {
         this.playAnimation(this.IMAGES_WALKING);
-        this.bog_sound.play();
+        if (isSoundOn) {
+          this.bog_sound.play();
+        }
         this.moveLeft();
       }
     }, 50);

@@ -101,7 +101,9 @@ class Character extends MovableObject {
       if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
         this.moveRight();
         this.lastMove = new Date().getTime();
+        if(isSoundOn){
         this.walking_sound.play();
+        }
         if (this.x >= 3000){
           this.world.enbossInAction = true;
         }
@@ -111,12 +113,16 @@ class Character extends MovableObject {
         this.moveLeft();
         this.otherDirection = true;
         this.lastMove = new Date().getTime();
-        this.walking_sound.play();
+        if(isSoundOn){
+          this.walking_sound.play();
+          }
       }
       if (this.world.keyboard.UP && !this.isAboveGround()) {
         this.jump();
         this.lastMove = new Date().getTime();
-        this.jump_sound.play();
+        if(isSoundOn){
+          this.jump_sound.play();
+          } 
       }
 
       this.world.camera_x = -this.x + 100;
@@ -128,12 +134,16 @@ class Character extends MovableObject {
         this.playAnimation(this.IMAGES_LONGIDLE);
       } else if (this.isHurt()) {
         this.playAnimation(this.IMAGES_HURT);
-        this.hurt_sound.play();
+        if(isSoundOn){
+          this.hurt_sound.play();
+          } 
       } else if (this.isDead()) {
         this.playAnimation(this.IMAGES_DEAD);
         this.hurt_sound.pause();
         this.walking_sound.pause();
-        this.die_sound.play();
+        if(isSoundOn){
+          this.die_sound.play();
+        }
         setTimeout(gameOver, 200);
       } else if (this.isAboveGround()) {
         this.playAnimation(this.IMAGES_JUMPING);

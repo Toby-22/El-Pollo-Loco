@@ -34,7 +34,9 @@ class Chicken extends MovableObject {
 
     this.animationIntervalId = setInterval(() => {
       if (this.isDead()) {
-        this.dead_sound.play();
+        if(isSoundOn){
+          this.dead_sound.play();
+          }
         this.playAnimation(this.IMAGES_DEAD);
         clearInterval(this.runningIntervalId);
         this.chickenFallOutScreen();
