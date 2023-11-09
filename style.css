@@ -219,6 +219,14 @@ canvas {
   z-index: 3;
 }
 
+.rotate-Display-img{
+  height: 60%;
+}
+
+#rotate-Display-Div{
+  z-index: 3;
+  display: none;
+}
 
 @media only screen and (max-width: 720px) {
   canvas {
@@ -234,6 +242,9 @@ canvas {
   }
   h1 {
     display: none;
+  }
+  #rotate-Display-Div{
+    display: flex;
   }
 }
 

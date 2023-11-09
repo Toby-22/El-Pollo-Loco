@@ -188,3 +188,7 @@ function muteSound(){
     isSoundOn = true;
   }
 }
+
+function closeRotateDisplay(){
+  document.getElementById('rotate-Display-Div').style.display = "none"; 
+}
