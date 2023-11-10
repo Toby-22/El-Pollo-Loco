@@ -16,8 +16,8 @@ body {
   flex-direction: column;
   align-items: center;
   background-image: url("img/dessert.png");
-  background-position: center;
   background-repeat: no-repeat;
+  background-size: cover;
   font-family: "Boots";
   font-size: 24px;
   font-weight: 100;
